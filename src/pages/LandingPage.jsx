@@ -11,7 +11,7 @@ export default function LandingPage(){
     })
     return(
         <>
-        <div className="bg-food-pattern h-dvh mx-10 lg:px-20">
+        <div className="bg-food-pattern h-dvh px-16 lg:px-20">
             <Navbar />
             <div className="text-center pt-24">
                 <h1 className="2xl:text-8xl xl:text-7xl lg:text-6xl md:text-5xl sm:text-4xl text-3xl font-shrikhand">MEAL PLANNING MADE </h1>
