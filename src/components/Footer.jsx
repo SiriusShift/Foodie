@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-import Instagram from "../assets/instagram.svg";
 const d = new Date().getFullYear();
 export default function Footer() {
     return(

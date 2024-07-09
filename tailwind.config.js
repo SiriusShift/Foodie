@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'food-pattern': "url('./src/assets/abstract-white-background-with-elements-of-useful-food-vector 1.png')",
+        'food-pattern': "url('/src/assets/abstract-white-background-with-elements-of-useful-food-vector 1.png')",
         'footer-texture': "url('/img/footer-texture.png')",
       },
       fontFamily: {
