@@ -20,6 +20,9 @@ export default {
       animation: {
         'spin-slow': 'spin 10s linear infinite',
       },
+      spacing: {
+        '4.72': '4.72rem',
+      }
     },
   },
   plugins: [],
