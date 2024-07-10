@@ -53,7 +53,7 @@ function Signup(){
                             <input name="remember" className="h-4 w-4 accent-orangered outline-gray-300 me-3" type="checkbox" />
                             <h3 className="">Remember Me</h3>
                         </div>
-                        <button className="h-14 lg:h-16 mt-10 text-xl text-white font-poppins rounded-xl w-full bg-orangered">Sign Up</button>
+                        <button className="h-14 lg:h-16 mt-10  lg:text-xl text-white font-poppins rounded-xl w-full bg-orangered">Sign Up</button>
                     </form>   
                     <div class="relative flex pt-5 items-center">
                         <div class="flex-grow border-t border-gray-400"></div>
