@@ -8,7 +8,7 @@ export default {
     extend: {
       backgroundImage: {
         'food-pattern': "url('/src/assets/abstract-white-background-with-elements-of-useful-food-vector 1.png')",
-        'footer-texture': "url('/img/footer-texture.png')",
+        'signup-pattern': "url('/src/assets/signup.jpeg')",
       },
       fontFamily: {
         poppins: ['"Poppins"', 'sans-serif'],
@@ -19,8 +19,7 @@ export default {
       },
       animation: {
         'spin-slow': 'spin 10s linear infinite',
-      }
-      
+      },
     },
   },
   plugins: [],
