@@ -25,16 +25,16 @@ function Signup(){
         axios.post()
     }
     return(
-        <div className="flex md:columns-2 flex-row">
-            <div className="w-full flex flex-col bg-food-pattern">
-                <div className="md:w-8/12 mx-auto">
-                    <div  className="mt-14 w-10 h-10 rounded-full bg-white flex justify-center items-center shadow-lg">
+        <div className="flex md:columns-2">
+            <div className="w-full py-4.72 flex-col bg-food-pattern">
+                <div className="lg:w-8/12 grow mx-10 lg:mx-20">
+                    <div  className="w-10 h-10 rounded-full bg-white flex justify-center items-center shadow-lg">
                         <Link to={"/"}>
                             <svg  width="25px" height="25px" viewBox="0 0 1024 1024" fill="#000000" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#000000" stroke-width="38.912"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M669.6 849.6c8.8 8 22.4 7.2 30.4-1.6s7.2-22.4-1.6-30.4l-309.6-280c-8-7.2-8-17.6 0-24.8l309.6-270.4c8.8-8 9.6-21.6 2.4-30.4-8-8.8-21.6-9.6-30.4-2.4L360.8 480.8c-27.2 24-28 64-0.8 88.8l309.6 280z" fill=""></path></g></svg>
                         </Link>
                     </div>
                     <h1 className="mt-5 font-poppins font-bold text-orangered text-3xl md:text-5xl">Sign Up</h1>
-                    <p className="mt-3 md:mt-5 text-base md:text-lg font-poppins">Already have an account? <Link to={"/login"}><span className="text-orangered font-semibold underline" >Login Now</span></Link></p>
+                    <p className="mt-3 md:mt-5 text-base md:text-lg font-poppins">Already have an account? <Link to={"/login"}><span className="text-orangered font-semibold underline text-wrap" >Login Now</span></Link></p>
                     <form onSubmit={handleSubmit}>                
                         <SignupInputs heading="Email"> 
                             <input onChange={handleChange} name="email" className="w-full border-y border-x border-x-slate-300 rounded-xl px-4 py-2 h-14 md:h-16 font-poppins" type="email"/>
@@ -66,7 +66,7 @@ function Signup(){
                     </div>
                 </div>
             </div>
-            <div className='text-wrap hidden md:flex md:bg-signup-pattern justify-end items-end bg-cover w-full h-dvh'> 
+            <div className='grow text-wrap hidden md:flex md:bg-signup-pattern justify-end items-end bg-cover w-full'> 
                 <h1 className='stroke-black font-shadow text-right text-5xl mx-20 mb-10 w-4/5 font-bold text-white font-poppins'>Helping you plan your next meal filipino meal</h1>
             </div>
         </div>
