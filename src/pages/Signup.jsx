@@ -91,8 +91,8 @@ function Signup(){
                         <div className="flex-grow border-t border-gray-400"></div>
                     </div>
                     <div className="mt-5">
-                        <Signup3rd image={GoogleIcon} name="Google"/>
-                        <Signup3rd image={FacebookIcon} name="Facebook"/>
+                        <Signup3rd title="Sign Up" image={GoogleIcon} name="Google"/>
+                        <Signup3rd title="Sign Up" image={FacebookIcon} name="Facebook"/>
                     </div>
                 </div>
             </div>
