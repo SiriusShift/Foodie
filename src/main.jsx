@@ -4,7 +4,7 @@ import LandingPage from "./pages/LandingPage";
 import Signup from "./pages/Signup";
 import ErrorPage from "./pages/ErrorPage";
 import Signin from "./pages/Signin";
-
+import Home from "./pages/Home";
 import './index.css';
 
 import {
@@ -27,6 +27,11 @@ const router = createBrowserRouter([
   {
     path: "/signin",
     element: <Signin />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: "/home",
+    element: <Home />,
     errorElement: <ErrorPage />
   }
 ]);
