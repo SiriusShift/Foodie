@@ -42,7 +42,7 @@ function Signin(){
             });
             return
         }
-        axios.post('http://localhost:3000/login', {login}).then(res => {
+        axios.post('http://localhost:3000/login', login).then(res => {
             toast.success(res.data, {
                 duration: 4000,
                 className: 'bg-green-200',
@@ -50,14 +50,15 @@ function Signin(){
             setTimeout(() => {
                 navigate('/home');                
             }, 4000);
-        }).catch(err => {
-            if(err.response.status === 401){
-                toast.error(err.response.data, {
-                    duration: 4000,
-                    className: 'bg-yellow-200',
-                });
-            }
-        });
+        })
+        // .catch(err => {
+        //     if(err.response.status === 401){
+        //         toast.error(err.response.data, {
+        //             duration: 4000,
+        //             className: 'bg-yellow-200',
+        //         });
+        //     }
+        // });
     }
     return(
         <div className="flex md:columns-2">
