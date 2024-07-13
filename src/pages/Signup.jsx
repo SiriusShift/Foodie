@@ -5,12 +5,14 @@ import FacebookIcon from "../assets/facebook.svg";
 import SignupInputs from "../components/SignupInputs";
 import Signup3rd from "../components/Signup3rd";
 import {toast, Toaster} from "sonner";
-
+import {registerEmailPass} from "../firebase/auth";
+// import {useAuth} from "../contexts/AuthContext";
 import {auth} from "../firebase/firebase";
 // import {useAuth} from "../contexts/AuthContext";
 import {createUserWithEmailAndPassword, onAuthStateChanged} from "firebase/auth";
 function Signup(){
     const navigate = useNavigate();
+    // const { userLoggedIn } = useAuth()
     const [hide, setHide] = useState(false);
     const [signingUp, setSigningup] = useState({
         email: '',
@@ -50,7 +52,7 @@ function Signup(){
 
     const register = async () => {
         try{
-            await createUserWithEmailAndPassword(auth,signingUp.email,signingUp.password).then((userCredential) => {
+            await registerEmailPass(signingUp.email,signingUp.password).then((userCredential) => {
                 toast.success("Signup successful!", {
                     duration: 4000,
                     className: 'bg-green-200',
@@ -118,7 +120,7 @@ function Signup(){
             <div className='grow text-wrap hidden md:flex md:bg-signup-pattern justify-end items-end bg-cover w-full'> 
                 <h1 className='stroke-black font-shadow text-right text-5xl mx-20 mb-10 w-4/5 font-bold text-white font-poppins'>Helping you plan your next meal filipino meal</h1>
             </div>
-            <Toaster />
+            <Toaster expand visibleToasts={1}/>
         </div>
     )
 }

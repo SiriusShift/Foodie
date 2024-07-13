@@ -1,4 +1,4 @@
-import {Link, useNavigate} from "react-router-dom"
+import {Link, useNavigate, useLocation} from "react-router-dom"
 import { useState, useEffect } from "react";
 import GoogleIcon from "../assets/google-svgrepo-com.svg";
 import FacebookIcon from "../assets/facebook.svg";
@@ -10,6 +10,14 @@ import {signInWithEmailAndPassword, onAuthStateChanged} from "firebase/auth";
 
 function Signin(){
     const navigate = useNavigate();
+    // const {state} = useLocation();
+    // console.log("what",state);
+    // if(state?.message){
+    //     toast.warning(state.message, {
+    //         duration: 4000,
+    //         className: 'bg-yellow-200',
+    //     })
+    // }
     const [hide, setHide] = useState(false);
     const [login, setLogin] = useState({
         email: '',
@@ -118,7 +126,7 @@ function Signin(){
             <div className='grow text-wrap hidden md:flex md:bg-signup-pattern justify-end items-end bg-cover w-full'> 
                 <h1 className='stroke-black font-shadow text-right text-5xl mx-20 mb-10 w-4/5 font-bold text-white font-poppins'>Helping you plan your next meal filipino meal</h1>
             </div>
-            <Toaster />
+            <Toaster expand visibleToasts={1}/>
         </div>
     )
 }
