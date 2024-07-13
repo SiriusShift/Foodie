@@ -7,11 +7,10 @@ import {toast, Toaster} from "sonner";
 
 export default function Home() {
     const navigate = useNavigate();
-
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if(user){
-                toast.success(res.data, {
+                toast.success("Login successful", {
                     duration: 4000,
                     className: 'bg-green-200',
                 })

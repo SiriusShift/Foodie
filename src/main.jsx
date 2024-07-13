@@ -6,6 +6,8 @@ import ErrorPage from "./pages/ErrorPage";
 import Signin from "./pages/Signin";
 import Home from "./pages/Home";
 import './index.css';
+import { AuthProvider } from "./contexts/AuthContext"
+
 
 import {
   createBrowserRouter,
@@ -37,7 +39,9 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  <AuthProvider>
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+  </AuthProvider>
 );

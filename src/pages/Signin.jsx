@@ -16,7 +16,7 @@ function Signin(){
         password: '',
         remember: false
     });
-
+    
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if(user){
@@ -60,7 +60,13 @@ function Signin(){
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                // ..
+                if(error){
+                    toast.warning(error.code, {
+                        duration: 4000,
+                        className: 'bg-yellow-200',
+                    })
+                }
+
             });
         }catch(error){
             console.log(error.message);
