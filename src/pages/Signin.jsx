@@ -22,7 +22,6 @@ function Signin(){
     const [login, setLogin] = useState({
         email: '',
         password: '',
-        remember: false
     });
     
     useEffect(() => {
@@ -57,10 +56,6 @@ function Signin(){
     const signin = async () => {
         try{
             await signInWithEmailAndPassword(auth,login.email,login.password).then((userCredential) => {
-                toast.success("Login successful!", {
-                    duration: 4000,
-                    className: 'bg-green-200',
-                })
                 setTimeout(() => {
                     navigate('/home');                
                 }, 4000);
@@ -83,7 +78,7 @@ function Signin(){
 
     return(
         <div className="flex md:columns-2">
-            <div className="w-full flex-col py-4.72 bg-food-pattern">
+            <div className="w-full flex-col py-26 bg-food-pattern">
                 <div className="sm:w-9/12 mx-14 xl:w-8/12 sm:mx-auto">
                     <div  className="w-10 h-10 rounded-full bg-white flex justify-center items-center shadow-lg">
                         <Link to={"/"}>
@@ -106,10 +101,6 @@ function Signin(){
                         </div>
                     </SignupInputs>
 
-                    <div className="mt-5 lg:mt-8 flex items-center">
-                        <input value={login.remember} onChange={handleChange} name="remember" className="h-4 w-4 accent-orangered outline-gray-300 me-3" type="checkbox" />
-                        <h3 className="font-poppins">Remember Me</h3>
-                    </div>
                     <button onClick={signin} className="h-14 lg:h-16 mt-10 lg:text-xl text-white font-poppins rounded-xl w-full bg-orangered">Sign In</button>
   
                     <div className="relative flex pt-5 items-center">
