@@ -1,23 +1,38 @@
-import axios from "axios";
-import { useEffect } from "react";
 import {useNavigate} from "react-router-dom"
+import {auth} from "../firebase/firebase";
+import { useEffect } from "react";
+import {onAuthStateChanged} from "firebase/auth";
+import {toast, Toaster} from "sonner";
 
 
 export default function Home() {
     const navigate = useNavigate();
+
     useEffect(() => {
-        axios.get('http://localhost:3000/home').then(res => {
-            console.log(res.data);
-            navigate('/home');
-        })
-        .catch(err => {
-            console.log(err);
-            // navigate('/signin');
-        })
+        onAuthStateChanged(auth, (user) => {
+            if(user){
+                toast.success(res.data, {
+                    duration: 4000,
+                    className: 'bg-green-200',
+                })
+            }
+            else{
+                navigate("/signin");
+            }
+        });
     })
+
+    function signout() {
+        auth.signOut().then(() => {
+            navigate("/signin");
+        })
+    }
+
     return (
         <div>
             <h1>Home</h1>
+            <button className="bg-red-500" onClick={signout}>Signout</button>
+            <Toaster />
         </div>
     )
 }

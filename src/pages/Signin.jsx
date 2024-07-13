@@ -1,11 +1,13 @@
 import {Link, useNavigate} from "react-router-dom"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import GoogleIcon from "../assets/google-svgrepo-com.svg";
 import FacebookIcon from "../assets/facebook.svg";
 import SignupInputs from "../components/SignupInputs";
 import Signup3rd from "../components/Signup3rd";
-import axios from "axios";
 import {toast, Toaster} from "sonner";
+import {auth} from "../firebase/firebase";
+import {signInWithEmailAndPassword, onAuthStateChanged} from "firebase/auth";
+
 function Signin(){
     const navigate = useNavigate();
     const [hide, setHide] = useState(false);
@@ -15,6 +17,16 @@ function Signin(){
         remember: false
     });
 
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if(user){
+                navigate("/home");
+            }
+            else{
+                console.log("no user");
+            }
+        });
+    })
     function handleChange(event){
         const {name, value, checked} = event.target;
         if(name === 'remember'){
@@ -33,33 +45,28 @@ function Signin(){
             
         }
     }
-    function handleSubmit (event){
-        event.preventDefault();
-        if(login.email === '' || login.password === ''){
-            toast.error("Please fill all the fields", {
-                duration: 4000,
-                className: 'bg-yellow-200',
-            });
-            return
-        }
-        axios.post('http://localhost:3000/login', login).then(res => {
-            toast.success(res.data, {
-                duration: 4000,
-                className: 'bg-green-200',
+   
+    const signin = async () => {
+        try{
+            await signInWithEmailAndPassword(auth,login.email,login.password).then((userCredential) => {
+                toast.success("Login successful!", {
+                    duration: 4000,
+                    className: 'bg-green-200',
+                })
+                setTimeout(() => {
+                    navigate('/home');                
+                }, 4000);
             })
-            setTimeout(() => {
-                navigate('/home');                
-            }, 4000);
-        })
-        // .catch(err => {
-        //     if(err.response.status === 401){
-        //         toast.error(err.response.data, {
-        //             duration: 4000,
-        //             className: 'bg-yellow-200',
-        //         });
-        //     }
-        // });
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ..
+            });
+        }catch(error){
+            console.log(error.message);
+        }
     }
+
     return(
         <div className="flex md:columns-2">
             <div className="w-full flex-col py-4.72 bg-food-pattern">
@@ -89,7 +96,7 @@ function Signin(){
                         <input value={login.remember} onChange={handleChange} name="remember" className="h-4 w-4 accent-orangered outline-gray-300 me-3" type="checkbox" />
                         <h3 className="font-poppins">Remember Me</h3>
                     </div>
-                    <button onClick={handleSubmit} className="h-14 lg:h-16 mt-10 lg:text-xl text-white font-poppins rounded-xl w-full bg-orangered">Sign In</button>
+                    <button onClick={signin} className="h-14 lg:h-16 mt-10 lg:text-xl text-white font-poppins rounded-xl w-full bg-orangered">Sign In</button>
   
                     <div className="relative flex pt-5 items-center">
                         <div className="flex-grow border-t border-gray-400"></div>

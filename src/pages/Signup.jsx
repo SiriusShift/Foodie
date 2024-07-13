@@ -1,31 +1,65 @@
 import {Link, useNavigate} from "react-router-dom"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GoogleIcon from "../assets/google-svgrepo-com.svg";
 import FacebookIcon from "../assets/facebook.svg";
 import SignupInputs from "../components/SignupInputs";
 import Signup3rd from "../components/Signup3rd";
-import axios from "axios";
 import {toast, Toaster} from "sonner";
+import {auth} from "../firebase/firebase";
+import {createUserWithEmailAndPassword, onAuthStateChanged} from "firebase/auth";
 function Signup(){
     const navigate = useNavigate();
     const [hide, setHide] = useState(false);
-    const [register, setRegister] = useState({
+    const [signup, setSignup] = useState({
         email: '',
         password: '',
         remember: false
     });
 
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if(user){
+                toast
+                navigate("/home");
+            }
+            else{
+                console.log("no user");
+            }
+        });
+    })
+
+    const register = async () => {
+        try{
+            await createUserWithEmailAndPassword(auth,signup.email,signup.password).then((userCredential) => {
+                toast.success(res.data, {
+                    duration: 4000,
+                    className: 'bg-green-200',
+                })
+                setTimeout(() => {
+                    navigate('/home');                
+                }, 4000);
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ..
+            });
+        }catch(error){
+            console.log(error.message);
+        }
+    }
+
     function handleChange(event){
         const {name, value, checked} = event.target;
         if(name === 'remember'){
-            setRegister(prevData => {
+            setSignup(prevData => {
                 return {
                 ...prevData,
                 [name]: checked }
             })
         }
         else{
-            setRegister(prevData => {
+            setSignup(prevData => {
                 return {
                 ...prevData,
                 [name]: value }
@@ -33,27 +67,7 @@ function Signup(){
             
         }
     }
-    function handleSubmit (event){
-        event.preventDefault();
-        if(register.email === '' || register.password === ''){
-            toast.error("Please fill all the fields", {
-                duration: 4000,
-                className: 'bg-yellow-200',
-            });
-            return
-        }
-        axios.post('http://localhost:3000/register', {register}).then(res => {
-            console.log(res.data);
-            navigate('/home');
-        }).catch(err => {
-            if(err.response.status === 409){
-                toast.error("Email already exists", {
-                    duration: 4000,
-                    className: 'bg-yellow-200',
-                });
-            }
-        });
-    }
+
     return(
         <div className="flex md:columns-2">
             <div className="w-full flex-col py-4.72 bg-food-pattern">
@@ -67,11 +81,11 @@ function Signup(){
                     <p className="mt-3 md:mt-5 text-base lg:text-lg font-poppins">Already have an account? <Link to={"/signin"}><span className="text-orangered font-semibold underline text-wrap" >Login Now</span></Link></p>
              
                     <SignupInputs heading="Email"> 
-                        <input onChange={handleChange} name="email" className="w-full border-y border-x border-x-slate-300 rounded-xl px-4 py-2 h-14 lg:h-16 font-poppins" type="email" required/>
+                        <input value={signup.email} onChange={handleChange} name="email" className="w-full border-y border-x border-x-slate-300 rounded-xl px-4 py-2 h-14 lg:h-16 font-poppins" type="email" required/>
                     </SignupInputs>
                     <SignupInputs heading="Password">
                         <div className="flex w-full relative">
-                            <input onChange={handleChange} name="password" className="w-full border-y border-x border-x-slate-300 rounded-xl px-4 py-2 h-14 lg:h-16 font-poppins" type={hide ? "password" : "text"} placeholder="" required/>
+                            <input value={signup.password} onChange={handleChange} name="password" className="w-full border-y border-x border-x-slate-300 rounded-xl px-4 py-2 h-14 lg:h-16 font-poppins" type={hide ? "password" : "text"} placeholder="" required/>
                             <div className="absolute w-16 right-0">
                                 <button onClick={() => setHide(!hide)} className="border-s ps-3 my-2 h-10 lg:h-12">{hide ? <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 10C4 10 5.6 15 12 15M12 15C18.4 15 20 10 20 10M12 15V18M18 17L16 14.5M6 17L8 14.5" stroke="#000000" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg>
                                 :<svg className="h-9 w-9 lg:h-10 lg:w-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12C4 12 5.6 7 12 7M12 7C18.4 7 20 12 20 12M12 7V4M18 5L16 7.5M6 5L8 7.5M15 13C15 14.6569 13.6569 16 12 16C10.3431 16 9 14.6569 9 13C9 11.3431 10.3431 10 12 10C13.6569 10 15 11.3431 15 13Z" stroke="#000000" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg>  }</button>
@@ -80,10 +94,10 @@ function Signup(){
                     </SignupInputs>
 
                     <div className="mt-5 lg:mt-8 flex items-center">
-                        <input value={register.remember} onChange={handleChange} name="remember" className="h-4 w-4 accent-orangered outline-gray-300 me-3" type="checkbox" />
+                        <input value={signup.remember} onChange={handleChange} name="remember" className="h-4 w-4 accent-orangered outline-gray-300 me-3" type="checkbox" />
                         <h3 className="font-poppins">Remember Me</h3>
                     </div>
-                    <button onClick={handleSubmit} className="h-14 lg:h-16 mt-10 lg:text-xl text-white font-poppins rounded-xl w-full bg-orangered">Sign Up</button>
+                    <button onClick={register} className="h-14 lg:h-16 mt-10 lg:text-xl text-white font-poppins rounded-xl w-full bg-orangered">Sign Up</button>
   
                     <div className="relative flex pt-5 items-center">
                         <div className="flex-grow border-t border-gray-400"></div>
