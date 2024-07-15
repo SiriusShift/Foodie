@@ -11,8 +11,8 @@ export default function LandingPage() {
     deleteSpeed: 100,
   });
   return (
-    <Fragment className="flex">
-      <div className="bg-food-pattern h-dvh " style={{ height: "700px" }}>
+    <>
+      <div className="bg-food-pattern h-dvh ">
         <Navbar />
         <div className="text-center px-10 relative pt-24">
           <h1 className="2xl:text-8xl xl:text-7xl lg:text-6xl md:text-5xl sm:text-4xl text-3xl font-shrikhand">
@@ -36,6 +36,6 @@ export default function LandingPage() {
         </div>
       </div>
       <Footer />
-    </Fragment>
+    </>
   );
 }
