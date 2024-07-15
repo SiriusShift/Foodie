@@ -6,14 +6,12 @@ import ErrorPage from "./pages/ErrorPage";
 import Signin from "./pages/Signin";
 import Home from "./pages/Home";
 import './index.css';
-import { AuthProvider } from "./contexts/AuthContext"
-
-
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 import "./index.css";
+import ForgotPassword from "./pages/ForgotPassword";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +27,11 @@ const router = createBrowserRouter([
   {
     path: "/signin",
     element: <Signin />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/forgot-password",
+    element: <ForgotPassword />,
     errorElement: <ErrorPage />
   },
   {

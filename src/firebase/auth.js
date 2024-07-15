@@ -5,6 +5,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   FacebookAuthProvider,
+  sendPasswordResetEmail
   //   sendPasswordResetEmail,
   //   sendEmailVerification,
   //   updatePassword,
@@ -38,9 +39,10 @@ export const doSignOut = () => {
   return auth.signOut();
 };
 
-// export const doPasswordReset = (email) => {
-//   return sendPasswordResetEmail(auth, email);
-// };
+export const doPasswordReset = async (email) => {
+  console.log(email);
+  return sendPasswordResetEmail(auth, email);
+};
 
 // export const doPasswordChange = (password) => {
 //   return updatePassword(auth.currentUser, password);
