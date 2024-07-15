@@ -69,7 +69,7 @@ function Signup() {
 
   const onFacebookSignIn = (e) => {
     try {
-        doSignInWithFacebook()
+      doSignInWithFacebook()
         .then((userCredential) => {
           setTimeout(() => {
             navigate("/home");
@@ -258,7 +258,12 @@ function Signup() {
               image={GoogleIcon}
               name="Google"
             />
-            <Signup3rd onSign={onFacebookSignIn} title="Sign Up" image={FacebookIcon} name="Facebook" />
+            <Signup3rd
+              onSign={onFacebookSignIn}
+              title="Sign Up"
+              image={FacebookIcon}
+              name="Facebook"
+            />
           </div>
         </div>
       </div>

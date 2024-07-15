@@ -7,7 +7,11 @@ import Signup3rd from "../components/Signup3rd";
 import { toast, Toaster } from "sonner";
 import { auth } from "../firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { doSignInWithGoogle, doSignInWithFacebook, signInEmailPass } from "../firebase/auth";
+import {
+  doSignInWithGoogle,
+  doSignInWithFacebook,
+  signInEmailPass,
+} from "../firebase/auth";
 
 function Signin() {
   const navigate = useNavigate();
@@ -37,17 +41,16 @@ function Signin() {
   function handleChange(event) {
     const { name, value } = event.target;
     setLogin((prevData) => {
-    return {
+      return {
         ...prevData,
         [name]: value,
-    };
+      };
     });
-    
   }
 
   const signin = async () => {
     try {
-      await signInEmailPass(auth, login.email, login.password)
+      await signInEmailPass(login.email, login.password)
         .then((userCredential) => {
           setTimeout(() => {
             navigate("/home");
@@ -93,7 +96,7 @@ function Signin() {
 
   const onFacebookSignIn = (e) => {
     try {
-        doSignInWithFacebook()
+      doSignInWithFacebook()
         .then((userCredential) => {
           setTimeout(() => {
             navigate("/home");
@@ -160,6 +163,7 @@ function Signin() {
 
           <SignupInputs heading="Email">
             <input
+              value={login.email}
               onChange={handleChange}
               name="email"
               className="w-full border-y border-x border-x-slate-300 rounded-xl px-4 py-2 h-14 lg:h-16 font-poppins"
@@ -170,6 +174,7 @@ function Signin() {
           <SignupInputs heading="Password">
             <div className="flex w-full relative">
               <input
+                value={login.password}
                 onChange={handleChange}
                 name="password"
                 className="w-full border-y border-x border-x-slate-300 rounded-xl px-4 py-2 h-14 lg:h-16 font-poppins"
@@ -248,8 +253,18 @@ function Signin() {
             <div className="flex-grow border-t border-gray-400"></div>
           </div>
           <div className="mt-5">
-            <Signup3rd title="Signin" onSign={onGoogleSignIn} image={GoogleIcon} name="Google" />
-            <Signup3rd title="Signin" onSign={onFacebookSignIn} image={FacebookIcon} name="Facebook" />
+            <Signup3rd
+              title="Signin"
+              onSign={onGoogleSignIn}
+              image={GoogleIcon}
+              name="Google"
+            />
+            <Signup3rd
+              title="Signin"
+              onSign={onFacebookSignIn}
+              image={FacebookIcon}
+              name="Facebook"
+            />
           </div>
         </div>
       </div>
