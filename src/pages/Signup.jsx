@@ -118,8 +118,8 @@ function Signup() {
   };
   return (
     <div className="flex md:columns-2">
-      <div className="w-full flex-col py-26 bg-food-pattern">
-        <div className="sm:w-9/12 mx-14 xl:w-8/12 sm:mx-auto">
+       <div className="w-full py-10 h-dvh content-center bg-food-pattern">
+        <div className="md:w-9/12 mx-14 xl:w-8/12 md:mx-auto">
           <div className="w-10 h-10 rounded-full bg-white flex justify-center items-center shadow-lg">
             <Link to={"/"}>
               <svg
@@ -241,7 +241,7 @@ function Signup() {
 
           <button
             onClick={register}
-            className="h-14 lg:h-16 mt-10 lg:text-xl text-white font-poppins rounded-xl w-full bg-orangered"
+            className="h-14 lg:h-16 mt-16 lg:text-xl text-white font-poppins rounded-xl w-full bg-orangered"
           >
             Sign Up
           </button>
@@ -267,10 +267,12 @@ function Signup() {
           </div>
         </div>
       </div>
-      <div className="grow text-wrap hidden md:flex md:bg-signup-pattern justify-end items-end bg-cover w-full">
-        <h1 className="stroke-black font-shadow text-right text-5xl mx-20 mb-10 w-4/5 font-bold text-white font-poppins">
-          Helping you plan your next meal filipino meal
-        </h1>
+      <div className="grow relative text-wrap hidden md:block md:bg-login-pattern bg-cover w-full">
+        <div className="absolute bottom-0 w-4/5 right-0">
+          <h1 className="stroke-black font-shadow text-right h-full text-5xl pb-5 pe-5 font-bold text-white font-poppins">
+            Helping you plan your next meal filipino meal
+          </h1>
+        </div>
       </div>
       <Toaster expand visibleToasts={1} />
     </div>
