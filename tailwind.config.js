@@ -9,6 +9,7 @@ export default {
       backgroundImage: {
         'food-pattern': "url('/src/assets/abstract-white-background-with-elements-of-useful-food-vector 1.png')",
         'signup-pattern': "url('/src/assets/signup.jpeg')",
+        'login-pattern': "url('/src/assets/signin.jpg')",
       },
       fontFamily: {
         poppins: ['"Poppins"', 'sans-serif'],
