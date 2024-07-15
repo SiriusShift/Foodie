@@ -13,7 +13,7 @@ export default function LandingPage(){
         <>
         <div className="bg-food-pattern h-dvh ">
             <Navbar />
-            <div className="text-center px-12 pt-24">
+            <div className="text-center px-10 pt-24">
                 <h1 className="2xl:text-8xl xl:text-7xl lg:text-6xl md:text-5xl sm:text-4xl text-3xl font-shrikhand">MEAL PLANNING MADE </h1>
                 <div className="w-100 justify-center flex">
                     <h1 className="2xl:text-8xl xl:text-7xl lg:text-6xl md:text-5xl sm:text-4xl text-3xl w-100 font-shrikhand absolute text-orangered">{word}</h1> 
