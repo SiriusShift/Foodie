@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 const d = new Date().getFullYear();
 export default function Footer() {
     return(
-        <footer className="w-full flex bg-orangered justify-between px-16 lg:px-20 h-50 py-3 ">
+        <footer className="w-full flex bg-orangered justify-between px-12 lg:px-20 h-50 py-3 ">
             <div className="flex py-2">
                 <Link className="text-lg md:text-2xl text-white font-shrikhand me-2" to={"/"}>Foodie</Link>  
                 <small className="text-md pt-1 md:text-base text-white font-poppins">© {d}</small>              
