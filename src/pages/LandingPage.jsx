@@ -12,9 +12,9 @@ export default function LandingPage() {
   });
   return (
     <>
-      <div className="bg-food-pattern h-dvh ">
+      <div className="bg-food-pattern h-full min-h-svh overflow-auto">
         <Navbar />
-        <div className="text-center px-10 relative pt-24">
+        <div className="text-center px-10 relative pt-24" style={{ height: "800px" }}>
           <h1 className="2xl:text-8xl xl:text-7xl lg:text-6xl md:text-5xl sm:text-4xl text-3xl font-shrikhand">
             MEAL PLANNING MADE{" "}
           </h1>
