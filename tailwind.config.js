@@ -8,8 +8,8 @@ export default {
     extend: {
       backgroundImage: {
         'food-pattern': "url('/src/assets/abstract-white-background-with-elements-of-useful-food-vector 1.png')",
-        'signup-pattern': "url('/src/assets/signup.jpg')",
-        'login-pattern': "url('/src/assets/signin.jpg')",
+        'signup-pattern': "url('/src/assets/signup.webp')",
+        'login-pattern': "url('/src/assets/signin.webp')",
       },
       fontFamily: {
         poppins: ['"Poppins"', 'sans-serif'],
