@@ -118,8 +118,8 @@ function Signin() {
   };
 
   return (
-    <div className="flex md:columns-2">
-       <div className="w-full py-10 h-dvh content-center bg-food-pattern">
+    <div className="flex h-full min-h-svh overflow-auto md:columns-2">
+      <div className="w-full py-10 content-center bg-food-pattern">
         <div className="md:w-9/12 mx-14 xl:w-8/12 md:mx-auto">
           <div className="w-10 h-10 rounded-full bg-white flex justify-center items-center shadow-lg">
             <Link to={"/"}>
@@ -239,8 +239,13 @@ function Signin() {
               </div>
             </div>
           </SignupInputs>
-          <Link to={"/forgot-password"} ><p className="mt-1 indent-1 hover:text-orangered">Forgot password?</p></Link>
-          <button onClick={signin}
+          <Link to={"/forgot-password"}>
+            <p className="mt-1 indent-1 hover:text-orangered">
+              Forgot password?
+            </p>
+          </Link>
+          <button
+            onClick={signin}
             className="h-14 lg:h-16 mt-10 lg:text-xl text-white font-poppins rounded-xl w-full bg-orangered"
           >
             Sign In
