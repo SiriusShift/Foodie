@@ -257,12 +257,14 @@ function Signup() {
               title="Sign Up"
               image={GoogleIcon}
               name="Google"
+              alt="Google Logo"
             />
             <Signup3rd
               onSign={onFacebookSignIn}
               title="Sign Up"
               image={FacebookIcon}
               name="Facebook"
+              alt="Facebook Logo"
             />
           </div>
         </div>

@@ -1,7 +1,7 @@
-export default function SignupInputs({children, heading}){
+export default function SignupInputs({children, heading, label}){
     return(
         <div className="mt-8">
-            <label className="text-base lg:text-lg font-poppins indent-2 mb-2">{heading}</label>
+            <label for={label} className="text-base lg:text-lg font-poppins indent-2 mb-2">{heading}</label >
             {children}
         </div>
     )

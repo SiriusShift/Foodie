@@ -161,17 +161,18 @@ function Signin() {
             </Link>
           </p>
 
-          <SignupInputs heading="Email">
+          <SignupInputs heading="Email" label="emailInput">
             <input
               value={login.email}
               onChange={handleChange}
               name="email"
               className="w-full border-y border-x border-x-slate-300 rounded-xl px-4 py-2 h-14 lg:h-16 font-poppins"
               type="email"
+              id="emailInput"
               required
             />
           </SignupInputs>
-          <SignupInputs heading="Password">
+          <SignupInputs heading="Password" id="passwordInput">
             <div className="flex w-full relative">
               <input
                 value={login.password}
@@ -179,7 +180,7 @@ function Signin() {
                 name="password"
                 className="w-full border-y border-x border-x-slate-300 rounded-xl px-4 py-2 h-14 lg:h-16 font-poppins"
                 type={hide ? "password" : "text"}
-                placeholder=""
+                id="passwordInput"
                 required
               />
               <div className="absolute w-16 right-0">
@@ -262,12 +263,14 @@ function Signin() {
               onSign={onGoogleSignIn}
               image={GoogleIcon}
               name="Google"
+              alt="Google Logo"
             />
             <Signup3rd
               title="Sign In"
               onSign={onFacebookSignIn}
               image={FacebookIcon}
               name="Facebook"
+              alt="Facebook Logo"
             />
           </div>
         </div>
