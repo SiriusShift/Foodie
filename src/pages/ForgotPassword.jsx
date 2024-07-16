@@ -49,8 +49,8 @@ function ForgotPassword() {
   };
 
   return (
-    <div className="flex md:columns-2">
-      <div className="w-full flex-col bg-food-pattern">
+    <div className="flex h-full min-h-svh overflow-auto md:columns-2">
+      <div className="w-full content-center bg-food-pattern">
         <div className="md:w-9/12 h-dvh content-center mx-14 xl:w-8/12 md:mx-auto">
           <h1 className="font-poppins font-bold text-orangered text-3xl lg:text-5xl">
             Forgot Password
