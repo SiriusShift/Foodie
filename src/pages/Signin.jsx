@@ -275,7 +275,7 @@ function Signin() {
           </div>
         </div>
       </div>
-      <div className="grow relative text-wrap hidden md:block md:bg-login-pattern bg-cover w-full">
+      <div className="grow relative text-wrap hidden md:block bg-cover md:bg-login-pattern w-full">
         <div className="absolute bottom-0 w-4/5 right-0">
           <h1 className="stroke-black font-shadow text-right h-full text-5xl pb-5 pe-5 font-bold text-white font-poppins">
             Helping you plan your next meal filipino meal
