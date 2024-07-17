@@ -1,12 +1,11 @@
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate, Navigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import GoogleIcon from "../assets/google-svgrepo-com.svg";
 import FacebookIcon from "../assets/facebook.svg";
 import SignupInputs from "../components/SignupInputs";
 import Signup3rd from "../components/Signup3rd";
 import { toast, Toaster } from "sonner";
-import { auth } from "../firebase/firebase";
-import { onAuthStateChanged } from "firebase/auth";
+import {useAuth} from "../contexts/index";
 import {
   doSignInWithGoogle,
   doSignInWithFacebook,
@@ -14,30 +13,14 @@ import {
 } from "../firebase/auth";
 
 function Signin() {
-  const navigate = useNavigate();
-  // const {state} = useLocation();
-  // console.log("what",state);
-  // if(state?.message){
-  //     toast.warning(state.message, {
-  //         duration: 4000,
-  //         className: 'bg-yellow-200',
-  //     })
-  // }
+  const nav = useNavigate();
+  const {userLoggedIn} = useAuth();
   const [hide, setHide] = useState(false);
   const [login, setLogin] = useState({
     email: "",
     password: "",
   });
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        navigate("/home");
-      } else {
-        console.log("no user");
-      }
-    });
-  });
   function handleChange(event) {
     const { name, value } = event.target;
     setLogin((prevData) => {
@@ -51,9 +34,6 @@ function Signin() {
   const signin = async () => {
     try {
       await signInEmailPass(login.email, login.password)
-        .then((userCredential) => {
-          navigate("/home");
-        })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
@@ -72,10 +52,6 @@ function Signin() {
   const onGoogleSignIn = (e) => {
     try {
       doSignInWithGoogle()
-        .then(() => {
-          console.log('going to home');
-          navigate("/home");
-        })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
@@ -94,11 +70,6 @@ function Signin() {
   const onFacebookSignIn = (e) => {
     try {
       doSignInWithFacebook()
-        .then((userCredential) => {
-          setTimeout(() => {
-            navigate("/home");
-          }, 4000);
-        })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
@@ -114,7 +85,9 @@ function Signin() {
     }
   };
 
-  return (
+  return (  
+    <div>
+    {userLoggedIn && (<Navigate to="/home" replace={true}/>)}
     <div className="flex h-full min-h-svh overflow-auto md:columns-2">
       <div className="w-full py-10 content-center bg-food-pattern">
         <div className="md:w-9/12 mx-14 xl:w-8/12 md:mx-auto">
@@ -280,6 +253,7 @@ function Signin() {
         </div>
       </div>
       <Toaster expand visibleToasts={1} />
+    </div>
     </div>
   );
 }

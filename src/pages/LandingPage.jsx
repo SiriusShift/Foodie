@@ -1,9 +1,10 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { Link } from "react-router-dom";
+import { Link, Navigate} from "react-router-dom";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
-import { Fragment } from "react";
+import { useAuth } from "../contexts/index";
 export default function LandingPage() {
+  const {userLoggedIn} = useAuth();
   const [word] = useTypewriter({
     words: ["EASIER", "FASTER"],
     loop: {},
@@ -12,6 +13,7 @@ export default function LandingPage() {
   });
   return (
     <>
+      {userLoggedIn && <Navigate to={"/home"} replace={true} />}
       <div className="bg-food-pattern h-full min-h-svh overflow-auto">
         <Navbar />
         <div className="text-center px-10 relative pt-24" style={{ height: "800px" }}>
