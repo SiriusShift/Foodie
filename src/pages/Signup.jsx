@@ -93,15 +93,6 @@ function Signup() {
   const register = async () => {
     try {
       await registerEmailPass(signingUp.email, signingUp.password)
-        .then((userCredential) => {
-          toast.success("Signup successful!", {
-            duration: 4000,
-            className: "bg-green-200",
-          });
-          setTimeout(() => {
-            navigate("/home");
-          }, 4000);
-        })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
@@ -241,7 +232,7 @@ function Signup() {
 
           <button
             onClick={register}
-            className="h-14 lg:h-16 mt-16 lg:text-xl text-white font-poppins rounded-xl w-full bg-orangered"
+            className="h-14 lg:h-16 mt-16 lg:text-xl text-white font-poppins rounded-xl w-full bg-darrow hover:bg-anon"
           >
             Sign Up
           </button>

@@ -11,7 +11,6 @@ export default function Home() {
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
-            console.log(user)
             if(user){
                 toast.success("Login successful", {
                     duration: 4000,

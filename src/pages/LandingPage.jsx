@@ -28,7 +28,7 @@ export default function LandingPage() {
             your daily dining decisions
           </p>
           <Link
-            className="2xl:px-8 2xl:py-4 xl:px-7 xl:py-3 lg:py-3 lg:px-6 md:py-3 md:px-5 py-3 px-5 bg-orangered font-poppins text-white shadow-md text-md text-sm lg:text-lg font-extrabold rounded-full"
+            className="2xl:px-8 2xl:py-4 xl:px-7 xl:py-3 lg:py-3 lg:px-6 md:py-3 md:px-5 py-3 px-5 bg-navy font-poppins bg-darrow text-white shadow-md text-md text-sm lg:text-lg font-extrabold rounded-full"
             to={"/signup"}
           >
             Try for free

@@ -52,9 +52,7 @@ function Signin() {
     try {
       await signInEmailPass(login.email, login.password)
         .then((userCredential) => {
-          setTimeout(() => {
-            navigate("/home");
-          }, 4000);
+          navigate("/home");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -75,9 +73,8 @@ function Signin() {
     try {
       doSignInWithGoogle()
         .then(() => {
-          setTimeout(() => {
-            navigate("/home");
-          }, 4000);
+          console.log('going to home');
+          navigate("/home");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -247,7 +244,7 @@ function Signin() {
           </Link>
           <button
             onClick={signin}
-            className="h-14 lg:h-16 mt-10 lg:text-xl text-white font-poppins rounded-xl w-full bg-orangered"
+            className="h-14 lg:h-16 mt-10 lg:text-xl text-white font-poppins rounded-xl w-full bg-darrow hover:bg-anon"
           >
             Sign In
           </button>

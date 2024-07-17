@@ -17,6 +17,7 @@ export default {
       },
       colors: {
         'orangered': '#EE340D',
+        'darrow' : '#780000'
       },
       animation: {
         'spin-slow': 'spin 10s linear infinite',
