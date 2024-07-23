@@ -2,16 +2,16 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Logo from "../assets/foody.png";
 export default function Navbar({ children }) {
-  const [isDesktop, setDesktop] = useState(window.innerWidth > 768);
+  // const [isDesktop, setDesktop] = useState(window.innerWidth > 768);
 
-  const updateMedia = () => {
-    setDesktop(window.innerWidth > 1450);
-  };
+  // const updateMedia = () => {
+  //   setDesktop(window.innerWidth > 1450);
+  // };
 
-  useEffect(() => {
-    window.addEventListener("resize", updateMedia);
-    return () => window.removeEventListener("resize", updateMedia);
-  });
+  // useEffect(() => {
+  //   window.addEventListener("resize", updateMedia);
+  //   return () => window.removeEventListener("resize", updateMedia);
+  // });
 
   return (
     <div className="container-md">
