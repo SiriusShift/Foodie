@@ -21,16 +21,20 @@ import sun from "../assets/sun.png";
 import adobo from "../assets/adobo.webp";
 import kalabasa from "../assets/kalabasa.webp";
 import express from "../assets/bicol-express.webp";
+import axios from "axios";
 export default function Home() {
   const navigate = useNavigate();
   const padding = "px-8 xs:px-10 sm:px-16 md:px-24 lg:px-30 xl:px-44 2xl:px-56";
-  const { userLoggedIn } = useAuth();
+  const { userLoggedIn, currentUser } = useAuth();
   const [open, setOpen] = useState(false);
+
   function signout() {
     auth.signOut().then(() => {
       navigate("/signin");
     });
   }
+
+
 
   return (
     <div>
@@ -123,16 +127,15 @@ export default function Home() {
                 </div>
               </div>
               <div className="w-full  mt-5 p-5 hidden md:  2xl:hidden  rounded-xl lg:flex justify-center ">
-                <img src={sun} className="w-52"
-                    alt="" />
-                </div>
+                <img src={sun} className="w-52" alt="" />
+              </div>
             </div>
             <div className="w-full items-stretch mt-5 lg:px-4 lg:mt-0 col-span-2">
               <div className="flex row-span-1 h-full md:mt-0 gap-5 lg:gap-5 flex-wrap md:justify-between lg:justify-around  2xl:justify-center w-full">
-                <div className="flex  w-full md:w-[48%] lg:w-[48%] 2xl:w-[30%]  pt-0 items-end relative">
+                <div className="flex w-full md:w-[48%] lg:w-[48%] 2xl:w-[30%] items-end relative">
                   <div className="h-full w-full rounded-xl z-0 relative  bg-white border border-gray-300 shadow-lg">
                     <div
-                      class="mx-auto w-full h-52 md:h-40 lg:h-32 bg-left min-[1750px]:h-48 relative  bg-cover rounded-t-xl overflow-hidden"
+                      class="mx-auto w-full h-52 bg-left md:h-40 lg:h-32 min-[1600px]:h-36 min-[1750px]:h-44 relative bg-cover rounded-t-xl overflow-hidden"
                       style={{ backgroundImage: `url(${sinigang})` }}
                     ></div>
                     <div className="mx-5">
@@ -142,7 +145,7 @@ export default function Home() {
                             Sinigang na Baboy
                           </h1>
                           <h2 className="font-poppins sm:text-lg md:text-xs text-black font-body">
-                            Australian Eggs
+                            Panlasang Pinoy
                           </h2>
                         </div>
                       </div>
@@ -151,7 +154,7 @@ export default function Home() {
                         <img src={full} className="w-6 md:w-5" alt="" />
                         <img src={full} className="w-6 md:w-5" alt="" />
                         <img src={full} className="w-6 md:w-5" alt="" />
-                        <img src={full  } className="w-6 md:w-5" alt="" />
+                        <img src={full} className="w-6 md:w-5" alt="" />
                       </div>
                     </div>
                   </div>
@@ -159,7 +162,7 @@ export default function Home() {
                 <div className="flex w-full md:w-[48%] lg:w-[48%] 2xl:w-[30%] items-end relative">
                   <div className="h-full w-full rounded-xl z-0 relative  bg-white border border-gray-300 shadow-lg">
                     <div
-                      class="mx-auto w-full h-52 md:h-40 lg:h-32 min-[1750px]:h-48 relative bg-cover rounded-t-xl overflow-hidden"
+                      class="mx-auto w-full h-52 bg-left md:h-40 lg:h-32 min-[1600px]:h-36 min-[1750px]:h-44 relative bg-cover rounded-t-xl overflow-hidden"
                       style={{ backgroundImage: `url(${talong})` }}
                     ></div>
                     <div className="mx-5">
@@ -186,7 +189,7 @@ export default function Home() {
                 <div className="flex w-full md:w-[48%] lg:w-[48%] 2xl:w-[30%]  pt-0 items-end relative">
                   <div className="h-full w-full rounded-xl z-0 relative  bg-white border border-gray-300 shadow-lg">
                     <div
-                      class="mx-auto w-full h-52 md:h-40 lg:h-32 min-[1750px]:h-48 relative bg-cover rounded-t-xl overflow-hidden"
+                      class="mx-auto w-full h-52 bg-left md:h-40 lg:h-32 min-[1600px]:h-36 min-[1750px]:h-44 relative bg-cover rounded-t-xl overflow-hidden"
                       style={{ backgroundImage: `url(${inasal})` }}
                     ></div>
                     <div className="mx-5">
@@ -213,7 +216,7 @@ export default function Home() {
                 <div className="flex w-full md:w-[48%] lg:w-[48%] 2xl:w-[30%]  pt-0 items-end relative">
                   <div className="h-full w-full rounded-xl z-0 relative  bg-white border border-gray-300 shadow-lg">
                     <div
-                      class="mx-auto w-full h-52 md:h-40 lg:h-32 min-[1750px]:h-48 relative bg-cover rounded-t-xl overflow-hidden"
+                      class="mx-auto w-full h-52 bg-left md:h-40 lg:h-32 min-[1600px]:h-36 min-[1750px]:h-44 relative bg-cover rounded-t-xl overflow-hidden"
                       style={{ backgroundImage: `url(${adobo})` }}
                     ></div>
                     <div className="mx-5">
@@ -240,14 +243,14 @@ export default function Home() {
                 <div className="flex w-full md:w-[48%] lg:w-[48%]  2xl:w-[30%]  pt-0 items-end relative">
                   <div className="h-full w-full rounded-xl z-0 relative  bg-white border border-gray-300 shadow-lg">
                     <div
-                      class="mx-auto w-full h-52 md:h-40 lg:h-32 min-[1750px]:h-48 relative bg-cover rounded-t-xl overflow-hidden"
+                      class="mx-auto w-full h-52 bg-left md:h-40 lg:h-32 min-[1600px]:h-36 min-[1750px]:h-44 relative bg-cover rounded-t-xl overflow-hidden"
                       style={{ backgroundImage: `url(${express})` }}
                     ></div>
                     <div className="mx-5">
                       <div className="flex items-center mt-3 md:my-2">
                         <div className="flex-col w-full">
                           <h1 className="font-poppins text-xl md:text-base font-bold text-black">
-                            TBicol Express
+                            Bicol Express
                           </h1>
                           <h2 className="font-poppins sm:text-lg md:text-xs text-black font-body">
                             Yummy Kitchen
@@ -267,7 +270,7 @@ export default function Home() {
                 <div className="flex w-full md:w-[48%] lg:w-[48%]  2xl:w-[30%] pt-0 items-end relative">
                   <div className="h-full w-full rounded-xl  z-0 relative  bg-white border border-gray-300 shadow-lg">
                     <div
-                      class="mx-auto w-full h-52 md:h-40 lg:h-32 min-[1750px]:h-48 relative bg-cover rounded-t-xl overflow-hidden"
+                      class="mx-auto w-full h-52 bg-left md:h-40 lg:h-32 min-[1600px]:h-36 min-[1750px]:h-44 relative bg-cover rounded-t-xl overflow-hidden"
                       style={{ backgroundImage: `url(${kalabasa})` }}
                     ></div>
                     <div className="mx-5">
