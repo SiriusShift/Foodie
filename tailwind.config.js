@@ -25,6 +25,10 @@ export default {
       },
       spacing: {
         '26': '6.47rem',
+      },
+      screens: {
+        '2xs': '300px',
+        'xs': '450px',
       }
     },
   },

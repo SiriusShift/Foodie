@@ -5,6 +5,8 @@ import Signup from "./pages/Signup";
 import ErrorPage from "./pages/ErrorPage";
 import Signin from "./pages/Signin";
 import Home from "./pages/Home";
+import Recipe from "./pages/Recipe";
+import Settings from "./pages/Settings";
 import './index.css';
 import {
   createBrowserRouter,
@@ -38,6 +40,16 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: <Home />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: "/recipe",
+    element: <Recipe />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: "/settings",
+    element: <Settings />,
     errorElement: <ErrorPage />
   }
 ]);

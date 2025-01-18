@@ -5,7 +5,7 @@ import { useAuth } from "../contexts/index";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useState } from "react";
-import defaultProfile from "../assets/profile.svg";
+import defaultProfile from "../assets/default.png";
 import TabList from "../components/TabList";
 import Customize from "../components/Customize";
 import star from "../assets/star.svg";
@@ -25,7 +25,7 @@ import axios from "axios";
 export default function Home() {
   const navigate = useNavigate();
   const padding = "px-8 xs:px-10 sm:px-16 md:px-24 lg:px-30 xl:px-44 2xl:px-56";
-  const { userLoggedIn, currentUser } = useAuth();
+  const { userLoggedIn, loggedInUser, currentUser } = useAuth();
   const [open, setOpen] = useState(false);
 
   function signout() {
@@ -33,11 +33,9 @@ export default function Home() {
       navigate("/signin");
     });
   }
-
-
-
+  console.log(currentUser);
   return (
-    <div>
+    <div>   
       {!userLoggedIn && <Navigate to={"/"} replace={true} />}
       <div className="bg-food-pattern h-full min-h-svh overflow-auto">
         <Navbar>
@@ -50,13 +48,9 @@ export default function Home() {
             <div className="w-40 flex justify-end mb-2">
               <div
                 onClick={() => setOpen(!open)}
-                className="w-12 h-12 rounded-full bg-white border shadow-md border-white"
+                className="w-12 h-12 bg-cover rounded-full bg-white shadow-md "
+                style={{backgroundImage: loggedInUser.image ? `url(${loggedInUser.image})` : `url(${defaultProfile})`}}
               >
-                <img
-                  src={defaultProfile}
-                  className="bg-cover h-7 w-7 mx-auto mt-3"
-                  alt=""
-                />
               </div>
             </div>
             {open && (
@@ -135,16 +129,16 @@ export default function Home() {
                 <div className="flex w-full md:w-[48%] lg:w-[48%] 2xl:w-[30%] items-end relative">
                   <div className="h-full w-full rounded-xl z-0 relative  bg-white border border-gray-300 shadow-lg">
                     <div
-                      class="mx-auto w-full h-52 bg-left md:h-40 lg:h-32 min-[1600px]:h-36 min-[1750px]:h-44 relative bg-cover rounded-t-xl overflow-hidden"
+                      className="mx-auto w-full h-40 xs:h-48 bg-left md:h-40 lg:h-32 min-[1600px]:h-36 min-[1750px]:h-44 relative bg-cover rounded-t-xl overflow-hidden"
                       style={{ backgroundImage: `url(${sinigang})` }}
                     ></div>
                     <div className="mx-5">
                       <div className="flex items-center mt-3 md:my-2">
                         <div className="flex-col w-full">
-                          <h1 className="font-poppins text-xl md:text-base font-bold text-black">
+                          <h1 className="font-poppins text-lg xs:text-2xl md:text-base font-bold text-black">
                             Sinigang na Baboy
                           </h1>
-                          <h2 className="font-poppins sm:text-lg md:text-xs text-black font-body">
+                          <h2 className="font-poppins text-sm sm:text-lg md:text-xs text-black font-body">
                             Panlasang Pinoy
                           </h2>
                         </div>
@@ -162,16 +156,16 @@ export default function Home() {
                 <div className="flex w-full md:w-[48%] lg:w-[48%] 2xl:w-[30%] items-end relative">
                   <div className="h-full w-full rounded-xl z-0 relative  bg-white border border-gray-300 shadow-lg">
                     <div
-                      class="mx-auto w-full h-52 bg-left md:h-40 lg:h-32 min-[1600px]:h-36 min-[1750px]:h-44 relative bg-cover rounded-t-xl overflow-hidden"
+                      className="mx-auto w-full h-40 xs:h-48 bg-left md:h-40 lg:h-32 min-[1600px]:h-36 min-[1750px]:h-44 relative bg-cover rounded-t-xl overflow-hidden"
                       style={{ backgroundImage: `url(${talong})` }}
                     ></div>
                     <div className="mx-5">
                       <div className="flex items-center mt-3 md:my-2">
                         <div className="flex-col w-full">
-                          <h1 className="font-poppins text-xl md:text-base font-bold text-black">
+                          <h1 className="font-poppins text-lg xs:text-2xl md:text-base font-bold text-black">
                             Tortang talong
                           </h1>
-                          <h2 className="font-poppins sm:text-lg md:text-xs text-black font-body">
+                          <h2 className="font-poppins text-sm sm:text-lg md:text-xs text-black ">
                             Australian Eggs
                           </h2>
                         </div>
@@ -189,16 +183,16 @@ export default function Home() {
                 <div className="flex w-full md:w-[48%] lg:w-[48%] 2xl:w-[30%]  pt-0 items-end relative">
                   <div className="h-full w-full rounded-xl z-0 relative  bg-white border border-gray-300 shadow-lg">
                     <div
-                      class="mx-auto w-full h-52 bg-left md:h-40 lg:h-32 min-[1600px]:h-36 min-[1750px]:h-44 relative bg-cover rounded-t-xl overflow-hidden"
+                      className="mx-auto w-full h-40 xs:h-48  bg-left md:h-40 lg:h-32 min-[1600px]:h-36 min-[1750px]:h-44 relative bg-cover rounded-t-xl overflow-hidden"
                       style={{ backgroundImage: `url(${inasal})` }}
                     ></div>
                     <div className="mx-5">
                       <div className="flex items-center mt-3 md:my-2">
                         <div className="flex-col w-full">
-                          <h1 className="font-poppins text-xl md:text-base font-bold text-black">
+                          <h1 className="font-poppins text-lg xs:text-2xl md:text-base font-bold text-black">
                             Chicken Inasal
                           </h1>
-                          <h2 className="font-poppins sm:text-lg md:text-xs text-black font-body">
+                          <h2 className="font-poppins text-sm sm:text-lg md:text-xs text-black ">
                             Australian Eggs
                           </h2>
                         </div>
@@ -216,16 +210,16 @@ export default function Home() {
                 <div className="flex w-full md:w-[48%] lg:w-[48%] 2xl:w-[30%]  pt-0 items-end relative">
                   <div className="h-full w-full rounded-xl z-0 relative  bg-white border border-gray-300 shadow-lg">
                     <div
-                      class="mx-auto w-full h-52 bg-left md:h-40 lg:h-32 min-[1600px]:h-36 min-[1750px]:h-44 relative bg-cover rounded-t-xl overflow-hidden"
+                      className="mx-auto w-full h-40 xs:h-48  bg-left md:h-40 lg:h-32 min-[1600px]:h-36 min-[1750px]:h-44 relative bg-cover rounded-t-xl overflow-hidden"
                       style={{ backgroundImage: `url(${adobo})` }}
                     ></div>
                     <div className="mx-5">
                       <div className="flex items-center mt-3 md:my-2">
                         <div className="flex-col w-full">
-                          <h1 className="font-poppins text-xl md:text-base font-bold text-black">
+                          <h1 className="font-poppins text-lg xs:text-2xl md:text-base font-bold text-black">
                             Adobong Manok
                           </h1>
-                          <h2 className="font-poppins sm:text-lg md:text-xs text-black font-body">
+                          <h2 className="font-poppins text-sm sm:text-lg md:text-xs text-black font-body">
                             Panlasang Pinoy
                           </h2>
                         </div>
@@ -243,16 +237,16 @@ export default function Home() {
                 <div className="flex w-full md:w-[48%] lg:w-[48%]  2xl:w-[30%]  pt-0 items-end relative">
                   <div className="h-full w-full rounded-xl z-0 relative  bg-white border border-gray-300 shadow-lg">
                     <div
-                      class="mx-auto w-full h-52 bg-left md:h-40 lg:h-32 min-[1600px]:h-36 min-[1750px]:h-44 relative bg-cover rounded-t-xl overflow-hidden"
+                      className="mx-auto w-full h-40 xs:h-48 bg-left md:h-40 lg:h-32 min-[1600px]:h-36 min-[1750px]:h-44 relative bg-cover rounded-t-xl overflow-hidden"
                       style={{ backgroundImage: `url(${express})` }}
                     ></div>
                     <div className="mx-5">
                       <div className="flex items-center mt-3 md:my-2">
                         <div className="flex-col w-full">
-                          <h1 className="font-poppins text-xl md:text-base font-bold text-black">
+                          <h1 className="font-poppins text-lg xs:text-2xl md:text-base font-bold text-black">
                             Bicol Express
                           </h1>
-                          <h2 className="font-poppins sm:text-lg md:text-xs text-black font-body">
+                          <h2 className="font-poppins text-sm sm:text-lg md:text-xs text-black font-body">
                             Yummy Kitchen
                           </h2>
                         </div>
@@ -270,26 +264,26 @@ export default function Home() {
                 <div className="flex w-full md:w-[48%] lg:w-[48%]  2xl:w-[30%] pt-0 items-end relative">
                   <div className="h-full w-full rounded-xl  z-0 relative  bg-white border border-gray-300 shadow-lg">
                     <div
-                      class="mx-auto w-full h-52 bg-left md:h-40 lg:h-32 min-[1600px]:h-36 min-[1750px]:h-44 relative bg-cover rounded-t-xl overflow-hidden"
+                      className="mx-auto w-full h-40 xs:h-48  bg-left md:h-40 lg:h-32 min-[1600px]:h-36 min-[1750px]:h-44 relative bg-cover rounded-t-xl overflow-hidden"
                       style={{ backgroundImage: `url(${kalabasa})` }}
                     ></div>
                     <div className="mx-5">
                       <div className="flex items-center mt-3 md:my-2">
                         <div className="flex-col w-full">
-                          <h1 className="font-poppins text-xl md:text-base font-bold text-black">
+                          <h1 className="font-poppins text-lg xs:text-2xl md:text-base font-bold text-black">
                             Ginataang Kalabasa
                           </h1>
-                          <h2 className="font-poppins sm:text-lg md:text-xs text-black font-body">
+                          <h2 className="font-poppins text-sm sm:text-lg md:text-xs text-black font-body">
                             Panlasang Pinoy
                           </h2>
                         </div>
                       </div>
                       <div className="gap-3 lg:lg:absolute bottom-0 my-3 flex">
-                        <img src={full} className="w-6 md:w-5" alt="" />
-                        <img src={full} className="w-6 md:w-5" alt="" />
-                        <img src={full} className="w-6 md:w-5" alt="" />
-                        <img src={half} className="w-6 md:w-5" alt="" />
-                        <img src={half} className="w-6 md:w-5" alt="" />
+                        <img src={full} className="w-5" alt="" />
+                        <img src={full} className="w-5" alt="" />
+                        <img src={full} className="w-5" alt="" />
+                        <img src={half} className="w-5" alt="" />
+                        <img src={half} className="w-5" alt="" />
                       </div>
                     </div>
                   </div>
@@ -298,7 +292,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* {/* </div> */}
         </div>
         <Footer />
         <Toaster expand visibleToasts={1} />
